@@ -16,9 +16,28 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getUserArea: builder.mutation({
-      query: (credentials) => ({
+      query: () => ({
         url: "users/user/area",
         method: "GET",
+      }),
+    }),
+    getAllACBUserFollows: builder.mutation({
+      query: () => ({
+        url: "animalcontrollboards/user/area",
+        method: "GET",
+      }),
+    }),
+    getAllMessagesFromUser: builder.mutation({
+      query: (id) => ({
+        url: `messages/${id}`,
+        method: "GET",
+      }),
+    }),
+    sendMessage: builder.mutation({
+      query: (credentials) => ({
+        url: "messages",
+        method: "POST",
+        body: { ...credentials },
       }),
     }),
   }),
@@ -27,4 +46,7 @@ export const {
   useGetuserBannerMutation,
   useUpdateUserAreaMutation,
   useGetUserAreaMutation,
+  useGetAllACBUserFollowsMutation,
+  useGetAllMessagesFromUserMutation,
+  useSendMessageMutation,
 } = usersApiSlice;

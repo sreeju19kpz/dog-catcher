@@ -14,6 +14,7 @@ export const reportsApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+
     getAllReportsByUser: builder.mutation({
       query: () => ({
         url: "reports/user",
@@ -69,4 +70,5 @@ export const {
   useGetAllReportsByUserMutation,
   useGetIsUserLikedMutation,
   useGetAllReportsFromAreaMutation,
+  useGetAllReportsForUserMutation,
 } = reportsApiSlice;

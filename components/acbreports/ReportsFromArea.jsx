@@ -1,15 +1,15 @@
 import { Platform, ScrollView, StatusBar, Text, View } from "react-native";
 import { styles } from "../../StyleSheet";
-import PostBanner from "../Posts/PostBanner";
+import PostBanner from "./elements/PostBanner";
 import { useCallback, useEffect, useState } from "react";
 import JISkeleton from "../Elements/JISkeleton";
 import { useFocusEffect } from "@react-navigation/native";
 import CreatePost from "../Posts/CreatePost";
-import { useGetAllReportsFromAreaMutation } from "../Features/reports/reportsApiSlice";
+import { useGetAllReportsForUserMutation } from "../Features/acbReports/reportsApiSlice";
 export default ReportsFromArea = () => {
   const [data, setData] = useState();
   const [myPosts, setMyPosts] = useState();
-  const [getAllReports, { isLoading }] = useGetAllReportsFromAreaMutation();
+  const [getAllReports, { isLoading }] = useGetAllReportsForUserMutation();
   useFocusEffect(
     useCallback(() => {
       const getReports = async () => {
@@ -74,15 +74,11 @@ export default ReportsFromArea = () => {
       style={[
         styles.wid100p,
         styles.flex1,
-
+        styles.bakColWhi,
         { paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 },
       ]}
     >
       <View style={[styles.flex1, styles.bakColWhi]}>
-        <CreatePost setMypost={(data) => updatePosts(data)} />
-        {myPosts?.map((item, index) => {
-          return <PostBanner post={item} key={index} />;
-        })}
         {data?.map((item, index) => {
           return <PostBanner post={item} key={index} />;
         })}
