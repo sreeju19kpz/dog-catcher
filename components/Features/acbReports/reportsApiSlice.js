@@ -10,7 +10,7 @@ export const reportsApiSlice = apiSlice.injectEndpoints({
     }),
     acbGetReportDetails: builder.mutation({
       query: (credentials) => ({
-        url: `acbreports/${credentials.id}`,
+        url: `acbreports/${credentials.id}/details`,
         method: "GET",
       }),
     }),

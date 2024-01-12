@@ -12,6 +12,7 @@ import { View } from "react-native";
 import { styles } from "../../StyleSheet";
 import { LinearGradient } from "expo-linear-gradient";
 import MessagesHome from "../messages/MessagesHome";
+import AltertsHome from "../alertsPage/AltertsHome";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,11 +24,18 @@ export default function DCApp() {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
+        headerBackground: () => (
+          <LinearGradient
+            style={[styles.flex1]}
+            colors={["#0000cd", "#000000"]}
+          />
+        ),
         tabBarHideOnKeyboard: true,
         headerStyle: {
           backgroundColor: "transparent",
           elevation: 0,
         },
+        headerTitleStyle: { color: "white" },
         tabBarBackground: () => (
           <LinearGradient
             style={[styles.flex1]}
@@ -56,7 +64,7 @@ export default function DCApp() {
       />
       <Tab.Screen
         name="alerts"
-        component={acbReportsFromArea}
+        component={AltertsHome}
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name="exclamationcircleo" size={17} color={color} />

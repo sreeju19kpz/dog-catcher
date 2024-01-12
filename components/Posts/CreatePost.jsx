@@ -1,5 +1,5 @@
 import { View, Text, Image, Pressable, Modal, TextInput } from "react-native";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { styles } from "../../StyleSheet";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
@@ -10,6 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useCreateReportMutation } from "../Features/reports/reportsApiSlice";
 import DropDown from "../Elements/DropDown";
 import RadioBtn from "../Elements/RadioBtn";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default CreatePost = ({ setMypost }) => {
   const [description, setDescription] = useState();
@@ -19,8 +20,26 @@ export default CreatePost = ({ setMypost }) => {
   const [noOfDogs, setNoOfDogs] = useState("");
   const [noOfAttacks, setNoOfAttacks] = useState("");
   const [createReport, { isLoading }] = useCreateReportMutation();
-
+  const [showWarnng1, setShowWarning1] = useState(false);
+  const [showWarnng2, setShowWarning2] = useState(false);
+  const ref = useRef();
   const report = async () => {
+    if (!noOfAttacks && !noOfDogs) {
+      setShowWarning1(true);
+      setShowWarning2(true);
+      ref.current.focus();
+      return;
+    }
+    if (!noOfDogs) {
+      setShowWarning1(true);
+      ref.current.focus();
+      return;
+    }
+    if (!noOfAttacks) {
+      setShowWarning2(true);
+      ref.current.focus();
+      return;
+    }
     const data = await createReport({
       noOfAttacks: noOfAttacks,
       noOfDogs: noOfDogs,
@@ -50,11 +69,11 @@ export default CreatePost = ({ setMypost }) => {
               styles.borWid1,
               styles.borRad10,
               styles.pad10,
-              styles.borColBlaLigP1,
+              styles.borColWhiLigP1,
               styles.borWid1,
             ]}
           >
-            <Text style={[styles.wid100p, styles.hei33, styles.fonColBlaLig1]}>
+            <Text style={[styles.wid100p, styles.hei33, styles.fonColWhi]}>
               type here something...
             </Text>
           </Pressable>
@@ -62,10 +81,10 @@ export default CreatePost = ({ setMypost }) => {
       </View>
       {state && (
         <Modal animationType="slide" transparent>
-          <View
+          <LinearGradient
+            colors={["#0000cd", "#000000"]}
             style={[
               styles.hei50,
-              styles.bacColBlu,
               styles.wid100p,
               styles.jusConSpcBtw,
               styles.aliIteCnt,
@@ -76,12 +95,12 @@ export default CreatePost = ({ setMypost }) => {
             <Pressable onPress={() => setState(!state)}>
               <AntDesign name="arrowleft" size={24} color="white" />
             </Pressable>
-          </View>
+          </LinearGradient>
           <View
             style={[
               styles.wid100p,
               styles.hei100p,
-              styles.bakColWhi,
+              styles.bakColBla,
               styles.pad20,
               styles.gap20,
             ]}
@@ -89,12 +108,12 @@ export default CreatePost = ({ setMypost }) => {
             <TextInput
               style={[
                 styles.borRad10,
-
                 styles.pad10,
                 styles.hei150,
                 styles.aliIteFleStr,
                 styles.borWid1,
                 styles.borColBlu1,
+                styles.fonColWhi,
                 {
                   textAlign: "left",
                   textAlignVertical: "top",
@@ -103,58 +122,77 @@ export default CreatePost = ({ setMypost }) => {
               value={description}
               onChangeText={setDescription}
               placeholder="type something here..."
+              placeholderTextColor={"white"}
             />
             <View style={[styles.gap20]}>
-              <View>
+              <View ref={ref}>
                 <View>
-                  <Text style={[styles.fonSiz12]}>No. of dogs in the area</Text>
+                  <Text style={[styles.fonSiz12, styles.fonColWhi]}>
+                    No. of dogs in the area
+                  </Text>
                 </View>
                 <View>
                   <TextInput
                     value={noOfDogs}
                     onChangeText={setNoOfDogs}
+                    onTouchEnd={() => setShowWarning1(false)}
                     keyboardType="numeric"
-                    style={[styles.borWid1]}
-                  />
-                  <Text
                     style={[
-                      styles.fonSiz12,
-                      styles.fonColRed,
-                      styles.posAbs,
+                      styles.borWid1,
+                      styles.borColBlu1,
+                      styles.fonColWhi,
                       styles.padHor10,
-                      styles.bakColWhi,
-                      { top: 20, marginHorizontal: 10 },
                     ]}
-                  >
-                    * this field is required
-                  </Text>
+                  />
+                  {showWarnng1 && (
+                    <Text
+                      style={[
+                        styles.fonSiz12,
+                        styles.fonColRed,
+                        styles.posAbs,
+                        styles.padHor10,
+                        styles.bakColBla,
+                        { top: 20, marginHorizontal: 10 },
+                      ]}
+                    >
+                      * this field is required
+                    </Text>
+                  )}
                 </View>
               </View>
               <View>
                 <View>
-                  <Text style={[styles.fonSiz12]}>
+                  <Text style={[styles.fonSiz12, styles.fonColWhi]}>
                     No. of people got attacked by dogs
                   </Text>
                 </View>
                 <View>
                   <TextInput
                     value={noOfAttacks}
+                    onTouchEnd={() => setShowWarning2(false)}
                     onChangeText={setNoOfAttacks}
                     keyboardType="numeric"
-                    style={[styles.borWid1]}
-                  />
-                  <Text
                     style={[
-                      styles.fonSiz12,
-                      styles.fonColRed,
-                      styles.posAbs,
+                      styles.borWid1,
+                      styles.borColBlu1,
                       styles.padHor10,
-                      styles.bakColWhi,
-                      { top: 20, marginHorizontal: 10 },
+                      styles.fonColWhi,
                     ]}
-                  >
-                    * this field is required
-                  </Text>
+                  />
+                  {showWarnng2 && (
+                    <Text
+                      style={[
+                        styles.fonSiz12,
+                        styles.fonColRed,
+                        styles.posAbs,
+                        styles.padHor10,
+                        styles.bakColBla,
+                        { top: 20, marginHorizontal: 10 },
+                      ]}
+                    >
+                      * this field is required
+                    </Text>
+                  )}
                 </View>
               </View>
             </View>
@@ -175,30 +213,31 @@ export default CreatePost = ({ setMypost }) => {
                   { zIndex: 1 },
                 ]}
               >
-                <Text>area :</Text>
+                <Text style={[styles.fonColWhi]}>area :</Text>
                 <DropDown onSelect={(data) => setArea(data)} text={area} />
               </View>
-              <View
-                style={[
-                  styles.flexDirRow,
-                  styles.gap10,
-                  styles.hei50,
-                  styles.aliIteCnt,
-                ]}
-              >
-                <RadioBtn
-                  title={"yes"}
-                  state={isRabbiesAffected}
-                  value={true}
-                  onClick={() => setIsRabbiesAffected(true)}
-                />
-                <RadioBtn
-                  title={"no"}
-                  state={isRabbiesAffected}
-                  value={false}
-                  onClick={() => setIsRabbiesAffected(false)}
-                />
-              </View>
+            </View>
+            <View
+              style={[
+                styles.flexDirRow,
+                styles.gap10,
+                styles.hei50,
+                styles.aliIteCnt,
+              ]}
+            >
+              <Text style={[styles.fonColWhi]}>tell if rabbies affected</Text>
+              <RadioBtn
+                title={"yes"}
+                state={isRabbiesAffected}
+                value={true}
+                onClick={() => setIsRabbiesAffected(true)}
+              />
+              <RadioBtn
+                title={"no"}
+                state={isRabbiesAffected}
+                value={false}
+                onClick={() => setIsRabbiesAffected(false)}
+              />
             </View>
             <View
               style={[styles.jusConSpcBtw, styles.aliIteCnt, styles.flexDirRow]}

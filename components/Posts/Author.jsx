@@ -17,7 +17,7 @@ export default Author = ({ name, dp }) => {
           ></Image>
         </View>
         <View>
-          <Text>{name} </Text>
+          <Text style={[styles.fonColWhi]}>{name} </Text>
         </View>
       </View>
     </View>

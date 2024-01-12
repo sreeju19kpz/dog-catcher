@@ -1,14 +1,12 @@
-import { Dimensions, Modal, Pressable, Text, View } from "react-native";
+import { Modal, Pressable, View } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { styles } from "../../StyleSheet";
 import QuickCommentBox from "../Posts/QuickCommentBox";
 import { useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import CommentBox from "../Posts/CommentBox";
-const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get("window");
 export default CommentButton = ({ id }) => {
   const [qc, setQc] = useState(false);
-
   return (
     <>
       <View style={[styles.jusConCnt, styles.wid33]}>
@@ -22,7 +20,11 @@ export default CommentButton = ({ id }) => {
           ]}
         >
           <View style={[styles.traScaM1]}>
-            <FontAwesome5 name="comment-alt" size={17} color="black" />
+            <FontAwesome5
+              name="comment-alt"
+              size={17}
+              color="rgba(255,255,255,.3)"
+            />
           </View>
         </Pressable>
       </View>
@@ -42,7 +44,7 @@ export default CommentButton = ({ id }) => {
             <GestureHandlerRootView style={[styles.flex1]}>
               <View
                 style={[
-                  ,
+                  styles.bakColBla,
                   styles.aliIteCnt,
                   styles.jusConCnt,
                   styles.flex1,

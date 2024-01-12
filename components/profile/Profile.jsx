@@ -24,12 +24,12 @@ const Profile = () => {
     getAllC();
   }, []);
 
-  if (isLoading) return <View style={[styles.flex1, styles.bakColWhi]}></View>;
+  if (isLoading) return <View style={[styles.flex1, styles.bakColBla]}></View>;
 
   return (
-    <>
-      <View style={[styles.wid100p, styles.bakColWhi]}>
-        <View style={[styles.wid100p]}>
+    <View style={[styles.flex1, styles.bakColBla]}>
+      <View style={[styles.wid100p, styles.bakColBla]}>
+        <View style={[styles.wid100p, styles.bakColBla]}>
           <View
             style={[
               styles.hei70,
@@ -48,7 +48,9 @@ const Profile = () => {
                 style={[styles.wid50, styles.hei50, { borderRadius: 35 }]}
                 source={data?.dp ? { uri: data?.dp } : dp}
               />
-              <Text style={[styles.fonSiz18, styles.fonWei700]}>
+              <Text
+                style={[styles.fonSiz18, styles.fonWei700, styles.fonColWhi]}
+              >
                 {data?.name}
               </Text>
             </View>
@@ -59,7 +61,7 @@ const Profile = () => {
         </View>
       </View>
       <AllPostsFromUser />
-    </>
+    </View>
   );
 };
 

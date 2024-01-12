@@ -1,4 +1,4 @@
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import SingleComment from "./SingleComment";
 import {
@@ -7,6 +7,7 @@ import {
 } from "../Features/comments/commentApiSlice";
 import SingleCommentSkeleton from "./SingleCommentSkeleton";
 import TypeComment from "./TypeComment";
+import { styles } from "../../StyleSheet";
 
 const CommentBox = ({ postId }) => {
   const [myComments, setMyComments] = useState();
@@ -31,16 +32,19 @@ const CommentBox = ({ postId }) => {
 
   if (isLoading)
     return (
-      <>
-        {Array.from({ length: 10 }).map((_, i) => (
+      <View style={[styles.bakColBla]}>
+        {Array.from({ length: 7 }).map((_, i) => (
           <SingleCommentSkeleton key={i} />
         ))}
-      </>
+      </View>
     );
 
   return (
     <>
-      <ScrollView keyboardShouldPersistTaps={"allways"}>
+      <ScrollView
+        keyboardShouldPersistTaps={"allways"}
+        style={[styles.bakColBla]}
+      >
         {myComments?.map((item, index) => {
           return <SingleComment key={index} comment={item} />;
         })}

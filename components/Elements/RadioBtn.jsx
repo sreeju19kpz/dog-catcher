@@ -15,6 +15,7 @@ export default RadioBtn = ({ state, value, title, onClick }) => {
       <View
         style={[
           styles.borWid1,
+          styles.borColWhiLigP1,
           styles.aliIteCnt,
           styles.jusConCnt,
           { width: 13, height: 13, borderRadius: 6.5 },
@@ -26,7 +27,7 @@ export default RadioBtn = ({ state, value, title, onClick }) => {
           />
         )}
       </View>
-      <Text>{title}</Text>
+      <Text style={[styles.fonColWhi]}>{title}</Text>
     </Pressable>
   );
 };

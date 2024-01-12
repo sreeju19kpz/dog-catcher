@@ -196,6 +196,9 @@ export const styles = StyleSheet.create({
   bakColWhi: {
     backgroundColor: "white",
   },
+  bakColBla: {
+    backgroundColor: "black",
+  },
   bakColred: {
     backgroundColor: "red",
   },
@@ -273,6 +276,9 @@ export const styles = StyleSheet.create({
   borColBlaLig: {
     borderColor: "rgba(0,0,0,.5)",
   },
+  borColWhiLigP1: {
+    borderColor: "rgba(255,255,255,.2)",
+  },
   borColBlaLigP1: {
     borderColor: "rgba(0,0,0,.2)",
   },
@@ -307,3 +313,7 @@ export const styles = StyleSheet.create({
     transform: [{ scaleX: -1 }],
   },
 });
+
+/* "overrides": {
+  "react-native-reanimated": "~3.3.0"
+} */

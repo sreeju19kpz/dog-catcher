@@ -17,28 +17,28 @@ export default TypeComment = ({ onClick }) => {
     setTypedComment("");
   };
   return (
-    <View style={[styles.bakColWhi]}>
+    <View style={[styles.bakColBla]}>
       <KeyboardAvoidingView>
         <View
           style={[
             styles.wid100p,
-            styles.bakColWhi,
-            styles.borWid1,
-            styles.borColBlaLigP1,
+            styles.bakColBla,
+            styles.borColWhiLigP1,
             styles.posAbs,
             styles.bot0,
             styles.flexDirRow,
             styles.jusConSpcBtw,
+            { borderTopWidth: 1 },
           ]}
         >
           <TextInput
-            o
             value={typedComment}
             onChangeText={setTypedComment}
             style={[
               styles.minHei50,
               styles.fleGro1,
               styles.padHor10,
+              styles.fonColWhi,
               { maxWidth: windowWidth - 55 },
             ]}
             placeholder="enter"

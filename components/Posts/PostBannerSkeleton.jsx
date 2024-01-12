@@ -12,9 +12,9 @@ export default PostBannerSkeleton = ({ post }) => {
         styles.wid100p,
         styles.maxWid400,
         styles.borWid1,
-        styles.borColBlaLigP1,
+        styles.borColWhiLigP1,
         styles.borRad10,
-        styles.bakColWhi,
+        styles.bakColBla,
       ]}
     >
       <View style={[styles.wid100p, styles.gap10, styles.jusConSpcAro]}>
@@ -29,7 +29,7 @@ export default PostBannerSkeleton = ({ post }) => {
           <View style={[styles.flexDirRow]}>
             <View style={[styles.flexDirRow, styles.gap10]}>
               <Skeleton
-                colorMode="light"
+                colorMode="dark"
                 width={33}
                 height={33}
                 radius={"round"}
@@ -39,7 +39,7 @@ export default PostBannerSkeleton = ({ post }) => {
                 }}
               ></Skeleton>
               <Skeleton
-                colorMode="light"
+                colorMode="dark"
                 width={80}
                 height={10}
                 radius={"round"}
@@ -52,7 +52,7 @@ export default PostBannerSkeleton = ({ post }) => {
           </View>
           <View style={[styles.flexDirRow, styles.fleGro1, { paddingLeft: 5 }]}>
             <Skeleton
-              colorMode="light"
+              colorMode="dark"
               width={80}
               height={10}
               radius={"round"}
@@ -65,7 +65,7 @@ export default PostBannerSkeleton = ({ post }) => {
         </View>
         <View style={[styles.padHor20, styles.gap10]}>
           <Skeleton
-            colorMode="light"
+            colorMode="dark"
             width={"90%"}
             height={3}
             radius={"round"}
@@ -75,7 +75,7 @@ export default PostBannerSkeleton = ({ post }) => {
             }}
           ></Skeleton>
           <Skeleton
-            colorMode="light"
+            colorMode="dark"
             width={"90%"}
             height={3}
             radius={"round"}
@@ -85,7 +85,7 @@ export default PostBannerSkeleton = ({ post }) => {
             }}
           ></Skeleton>
           <Skeleton
-            colorMode="light"
+            colorMode="dark"
             width={"90%"}
             height={3}
             radius={"round"}
@@ -95,7 +95,7 @@ export default PostBannerSkeleton = ({ post }) => {
             }}
           ></Skeleton>
           <Skeleton
-            colorMode="light"
+            colorMode="dark"
             width={"90%"}
             height={3}
             radius={"round"}
@@ -105,7 +105,7 @@ export default PostBannerSkeleton = ({ post }) => {
             }}
           ></Skeleton>
           <Skeleton
-            colorMode="light"
+            colorMode="dark"
             width={"90%"}
             height={3}
             radius={"round"}
@@ -115,7 +115,7 @@ export default PostBannerSkeleton = ({ post }) => {
             }}
           ></Skeleton>
           <Skeleton
-            colorMode="light"
+            colorMode="dark"
             width={"90%"}
             height={3}
             radius={"round"}
@@ -136,7 +136,7 @@ export default PostBannerSkeleton = ({ post }) => {
           >
             <View style={[styles.jusConCnt, styles.wid140, styles.aliIteCnt]}>
               <Skeleton
-                colorMode="light"
+                colorMode="dark"
                 width={80}
                 height={22}
                 radius={"round"}
@@ -148,7 +148,7 @@ export default PostBannerSkeleton = ({ post }) => {
             </View>
             <View style={[styles.jusConCnt, styles.wid140, styles.aliIteCnt]}>
               <Skeleton
-                colorMode="light"
+                colorMode="dark"
                 width={80}
                 height={22}
                 radius={"round"}

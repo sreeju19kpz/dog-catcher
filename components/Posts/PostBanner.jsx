@@ -13,13 +13,13 @@ export default PostBanner = ({ post }) => {
         styles.wid100p,
         styles.maxWid400,
         styles.borWid1,
-        styles.borColBlaLigP1,
+        styles.borColWhiLigP1,
         styles.borRad10,
-        styles.bakColWhi,
+        styles.bakColBla,
       ]}
     >
       <View style={[styles.wid100p, styles.jusConSpcAro]}>
-        <View style={[styles.borBotWid1, styles.borColBlaLigP1]}>
+        <View style={[styles.borBotWid1, styles.borColWhiLigP1]}>
           <View
             style={[
               styles.flexDirRow,
@@ -37,7 +37,12 @@ export default PostBanner = ({ post }) => {
           </View>
           <View style={[styles.padHor20, { paddingTop: 10 }]}>
             <Text
-              style={[styles.fonSiz15, { lineHeight: 30 }, styles.padHor10]}
+              style={[
+                styles.fonSiz15,
+                styles.fonColWhi,
+                { lineHeight: 30 },
+                styles.padHor10,
+              ]}
             >
               {post?.description}
             </Text>
@@ -61,21 +66,35 @@ export default PostBanner = ({ post }) => {
           </View>
           <View style={[styles.padHor20, styles.flexDirRow]}>
             <Text
-              style={[styles.fonSiz15, styles.padHor10, { lineHeight: 30 }]}
+              style={[
+                styles.fonSiz15,
+                styles.padHor10,
+                styles.fonColWhi,
+                { lineHeight: 30 },
+              ]}
             >
               no of dogs:
             </Text>
-            <Text style={[styles.fonSiz15, { lineHeight: 30 }]}>
+            <Text
+              style={[styles.fonSiz15, styles.fonColWhi, { lineHeight: 30 }]}
+            >
               {post?.noOfDogs}
             </Text>
           </View>
           <View style={[styles.padHor20, styles.flexDirRow]}>
             <Text
-              style={[styles.fonSiz15, styles.padHor10, { lineHeight: 30 }]}
+              style={[
+                styles.fonSiz15,
+                styles.padHor10,
+                styles.fonColWhi,
+                { lineHeight: 30 },
+              ]}
             >
               total attacks:
             </Text>
-            <Text style={[styles.fonSiz15, { lineHeight: 30 }]}>
+            <Text
+              style={[styles.fonSiz15, styles.fonColWhi, { lineHeight: 30 }]}
+            >
               {post?.noOfAttacks}
             </Text>
           </View>
@@ -83,7 +102,12 @@ export default PostBanner = ({ post }) => {
             style={[styles.padHor20, styles.flexDirRow, { paddingBottom: 10 }]}
           >
             <Text
-              style={[styles.fonSiz15, styles.padHor10, { lineHeight: 30 }]}
+              style={[
+                styles.fonSiz15,
+                styles.padHor10,
+                styles.fonColWhi,
+                { lineHeight: 30 },
+              ]}
             >
               current Status:
             </Text>

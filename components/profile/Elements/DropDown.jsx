@@ -29,23 +29,25 @@ export default DropDown = ({ onSelect, text, onRemove }) => {
           styles.hei100p,
           styles.aliIteCnt,
           styles.jusConSpcBtw,
+          styles.borColWhiLigP1,
           styles.flexDirRow,
-          styles.bakColWhi,
+          styles.bakColBla,
           styles.padHor4,
           styles.borRad10,
           styles.borWid1,
-          styles.borColBlaLigP1,
           { elevation: 5, zIndex: 1, height: 24 },
         ]}
       >
-        <Text style={[styles.fonSiz15]}>{text}</Text>
+        <Text style={[styles.fonSiz15, styles.fonColWhi, { lineHeight: 16 }]}>
+          {text}
+        </Text>
       </Pressable>
 
       {open && (
         <View
           style={[
             styles.posAbs,
-            styles.bakColred,
+            styles.bakColBla,
             styles.hei150,
             styles.wid100,
             { top: 45 },
@@ -54,7 +56,7 @@ export default DropDown = ({ onSelect, text, onRemove }) => {
           {areaList?.map((item, i) => {
             return (
               <Pressable key={i} onPress={() => changeStates(item)}>
-                <Text>{item}</Text>
+                <Text style={[styles.fonColWhi]}>{item}</Text>
               </Pressable>
             );
           })}

@@ -40,6 +40,12 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         body: { ...credentials },
       }),
     }),
+    getAllNotifications: builder.mutation({
+      query: () => ({
+        url: "users/notifications",
+        method: "GET",
+      }),
+    }),
   }),
 });
 export const {
@@ -49,4 +55,5 @@ export const {
   useGetAllACBUserFollowsMutation,
   useGetAllMessagesFromUserMutation,
   useSendMessageMutation,
+  useGetAllNotificationsMutation,
 } = usersApiSlice;

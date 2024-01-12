@@ -9,7 +9,7 @@ export default App = () => {
   return (
     <Provider store={store}>
       <Main />
-      <StatusBar style="light" backgroundColor="#1F51FF" />
+      <StatusBar style="light" backgroundColor="#000090" />
     </Provider>
   );
 };

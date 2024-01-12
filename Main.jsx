@@ -5,9 +5,18 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import Authentication from "./components/pages/Authentication";
 import { selectCurrentState } from "./components/Features/auth/authSlice";
-import { Text, View } from "react-native";
 import DCApp from "./components/pages/DCApp";
 import { useNavigation } from "@react-navigation/native";
+import { Text, View, Button, Platform } from "react-native";
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+
 export default Main = () => {
   const isLoggedIn = useSelector(selectCurrentState);
 
@@ -19,6 +28,7 @@ export default Main = () => {
           // Configuration for linking
           screens: {
             profile: "profile",
+            alerts: "alerts/acbreports/:id",
           },
         },
         async getInitialURL() {

@@ -51,7 +51,7 @@ export default DropDown = ({ onSelect, text }) => {
         <View
           style={[
             styles.posAbs,
-            styles.bakColred,
+            styles.bakColBla,
             styles.hei150,
             styles.wid100,
             { top: 45 },
@@ -60,7 +60,7 @@ export default DropDown = ({ onSelect, text }) => {
           {areaList.map((item, i) => {
             return (
               <Pressable key={i} onPress={() => changeStates(item)}>
-                <Text>{item}</Text>
+                <Text style={[styles.fonColWhi]}>{item}</Text>
               </Pressable>
             );
           })}

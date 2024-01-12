@@ -64,7 +64,7 @@ const QuickCommentBox = React.forwardRef(({ End, children }, ref) => {
         style={[
           styles.wid100p,
           styles.posAbs,
-          styles.bakColWhi,
+          styles.bakColBla,
           styles.borRad20,
           rBottomSheetStyle,
           {
@@ -77,7 +77,7 @@ const QuickCommentBox = React.forwardRef(({ End, children }, ref) => {
           style={[
             styles.wid70,
             styles.hei4,
-            styles.bakColblap5,
+            styles.bakColWhi,
             styles.borRad10,
             styles.marVer5,
             styles.aliSelCnt,

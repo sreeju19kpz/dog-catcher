@@ -11,7 +11,7 @@ const SingleCommentSkeleton = () => {
         style={[styles.wid100p, styles.pad10, styles.flexDirRow, styles.gap10]}
       >
         <Skeleton
-          colorMode="light"
+          colorMode="dark"
           width={33}
           height={33}
           radius={"round"}
@@ -32,7 +32,7 @@ const SingleCommentSkeleton = () => {
           ]}
         >
           <Skeleton
-            colorMode="light"
+            colorMode="dark"
             width={"40%"}
             height={6}
             radius={"round"}
@@ -42,7 +42,7 @@ const SingleCommentSkeleton = () => {
             }}
           ></Skeleton>
           <Skeleton
-            colorMode="light"
+            colorMode="dark"
             width={"80%"}
             height={5}
             radius={"round"}
@@ -52,7 +52,7 @@ const SingleCommentSkeleton = () => {
             }}
           ></Skeleton>
           <Skeleton
-            colorMode="light"
+            colorMode="dark"
             width={"80%"}
             height={5}
             radius={"round"}

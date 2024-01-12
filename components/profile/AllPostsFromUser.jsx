@@ -27,7 +27,7 @@ export default AllPostsFromUser = () => {
     return (
       <View
         style={[
-          styles.bakColWhi,
+          styles.bakColBla,
           styles.gap10,
           styles.marTop5,
           styles.pad10,
@@ -35,7 +35,7 @@ export default AllPostsFromUser = () => {
           styles.fleGro1,
         ]}
       >
-        <CreatePost type={"USER_POST"} />
+        <CreatePost setMypost={(data) => updatePosts(data)} />
         {Array.from({ length: 3 }).map((_, i) => {
           return <PostBannerSkeleton key={i} />;
         })}
@@ -46,19 +46,17 @@ export default AllPostsFromUser = () => {
     <ScrollView
       keyboardShouldPersistTaps="allways"
       nestedScrollEnabled={true}
-      style={[styles.flex1]}
+      style={[styles.flex1, styles.bakColBla]}
       contentContainerStyle={[
-        styles.bakColWhi,
+        styles.bakColBla,
         styles.gap10,
         styles.marTop5,
         styles.pad10,
         styles.fleGro1,
+        { paddingBottom: 85 },
       ]}
     >
-      <CreatePost
-        type={"USER_POST"}
-        setMypost={(data) => createNewPost(data)}
-      />
+      <CreatePost setMypost={(data) => createNewPost(data)} />
       {newPost?.map((item, index) => {
         return <PostBanner key={index} post={item} />;
       })}

@@ -6,6 +6,8 @@ import JISkeleton from "../Elements/JISkeleton";
 import { useFocusEffect } from "@react-navigation/native";
 import CreatePost from "../Posts/CreatePost";
 import { useGetAllReportsFromAreaMutation } from "../Features/reports/reportsApiSlice";
+import { LinearGradient } from "expo-linear-gradient";
+import PostBannerSkeleton from "../Posts/PostBannerSkeleton";
 export default ReportsFromArea = () => {
   const [data, setData] = useState();
   const [myPosts, setMyPosts] = useState();
@@ -25,18 +27,11 @@ export default ReportsFromArea = () => {
   if (isLoading) {
     if (data) {
       <ScrollView
-        contentContainerStyle={{ paddingBottom: 60 }}
+        contentContainerStyle={[{ paddingBottom: 60 }, styles.bakColBla]}
         keyboardShouldPersistTaps="always"
-        style={[
-          styles.wid100p,
-          styles.flex1,
-          styles.bakColWhi,
-          {
-            paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-          },
-        ]}
+        style={[styles.wid100p, styles.flex1, styles.bakColBla, styles.pad10]}
       >
-        <View style={[styles.flex1, styles.bakColWhi]}>
+        <View style={[styles.flex1, styles.bakColBla]}>
           <CreatePost setMypost={(data) => updatePosts(data)} />
           {data?.map((item, index) => {
             return <PostBanner post={item} key={index} />;
@@ -50,16 +45,14 @@ export default ReportsFromArea = () => {
             style={[
               styles.wid100p,
               styles.flex1,
-              styles.bakColWhi,
-              {
-                paddingTop:
-                  Platform.OS === "android" ? StatusBar.currentHeight : 0,
-              },
+              styles.bakColBla,
+              styles.pad10,
             ]}
           >
-            <View style={[styles.flex1, styles.bakColWhi]}>
+            <View style={[styles.flex1, styles.bakColBla, styles.gap10]}>
+              <CreatePost setMypost={(data) => updatePosts(data)} />
               {Array.from({ length: 3 }).map((_, i) => {
-                return <JISkeleton key={i} />;
+                return <PostBannerSkeleton key={i} />;
               })}
             </View>
           </View>
@@ -68,25 +61,22 @@ export default ReportsFromArea = () => {
     }
   }
   return (
-    <ScrollView
-      contentContainerStyle={{ paddingBottom: 60 }}
-      keyboardShouldPersistTaps="always"
-      style={[
-        styles.wid100p,
-        styles.flex1,
-
-        { paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 },
-      ]}
-    >
-      <View style={[styles.flex1, styles.bakColWhi]}>
-        <CreatePost setMypost={(data) => updatePosts(data)} />
-        {myPosts?.map((item, index) => {
-          return <PostBanner post={item} key={index} />;
-        })}
-        {data?.map((item, index) => {
-          return <PostBanner post={item} key={index} />;
-        })}
-      </View>
-    </ScrollView>
+    <>
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 90 }}
+        keyboardShouldPersistTaps="always"
+        style={[styles.wid100p, styles.flex1, styles.pad10, styles.bakColBla]}
+      >
+        <View style={[styles.flex1, styles.bakColBla, styles.gap10]}>
+          <CreatePost setMypost={(data) => updatePosts(data)} />
+          {myPosts?.map((item, index) => {
+            return <PostBanner post={item} key={index} />;
+          })}
+          {data?.map((item, index) => {
+            return <PostBanner post={item} key={index} />;
+          })}
+        </View>
+      </ScrollView>
+    </>
   );
 };

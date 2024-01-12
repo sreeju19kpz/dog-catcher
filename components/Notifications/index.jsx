@@ -1,126 +1,62 @@
-import React from "react";
-import { useState, useEffect, useRef } from "react";
-import { Text, View, Button, Platform } from "react-native";
-import * as Device from "expo-device";
-import * as Notifications from "expo-notifications";
-import Constants from "expo-constants";
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-  }),
-});
-
+import { View } from "moti";
+import { styles } from "../../StyleSheet";
+import { Pressable, ScrollView, Text } from "react-native";
+import { useGetAllNotificationsMutation } from "../Features/user/userApiSlice";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 export default NotificationScreen = () => {
-  const [expoPushToken, setExpoPushToken] = useState("");
-  const [notification, setNotification] = useState(false);
-  const notificationListener = useRef();
-  const responseListener = useRef();
-
-  useEffect(() => {
-    registerForPushNotificationsAsync().then((token) =>
-      setExpoPushToken(token)
-    );
-
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => {
-        setNotification(notification);
-      });
-
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
-      });
-
-    return () => {
-      Notifications.removeNotificationSubscription(
-        notificationListener.current
-      );
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
-  }, []);
+  const [notifications, setNotifications] = useState([]);
+  const [getAllNotifications, { isLoading }] = useGetAllNotificationsMutation();
+  const navigation = useNavigation();
+  useFocusEffect(
+    useCallback(() => {
+      const fetch = async () => {
+        const data = await getAllNotifications().unwrap();
+        data && setNotifications(data.notifications);
+      };
+      fetch();
+    }, [])
+  );
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "space-around",
-      }}
-    >
-      <Text>Your expo push token: {expoPushToken}</Text>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Text>
-          Title: {notification && notification.request.content.title}{" "}
-        </Text>
-        <Text>Body: {notification && notification.request.content.body}</Text>
-        <Text>
-          Data:{" "}
-          {notification && JSON.stringify(notification.request.content.data)}
-        </Text>
-      </View>
-      <Button
-        title="Press to schedule a notification"
-        onPress={async () => {
-          await schedulePushNotification();
-        }}
-      />
+    <View style={[styles.flex1, styles.bakColBla]}>
+      <ScrollView
+        style={[styles.flex1, styles.bakColBla]}
+        contentContainerStyle={[
+          styles.flex1,
+          styles.bakColBla,
+          styles.pad10,
+          styles.gap10,
+        ]}
+      >
+        {notifications?.map((item, i) => {
+          return (
+            <Pressable
+              onPress={() =>
+                navigation.navigate("alerts", {
+                  screen: "acbdetails",
+                  params: { id: item.postId },
+                })
+              }
+              key={i}
+              style={[
+                styles.wid100p,
+                styles.hei50,
+                styles.aliIteCnt,
+                styles.jusConCnt,
+                styles.borWid1,
+                styles.borColWhiLigP1,
+                styles.borRad10,
+              ]}
+            >
+              <Text style={[styles.fonSiz18, styles.fonColIndBlu]}>
+                {item?.notification}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </ScrollView>
     </View>
   );
 };
-
-async function schedulePushNotification() {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "You've got mail! 📬",
-      body: "Here is the notification body",
-      data: { data: "goes here", url: "https://mydcapp.com/profile" },
-    },
-    trigger: { seconds: 2 },
-  });
-}
-
-async function registerForPushNotificationsAsync() {
-  let token;
-
-  if (Platform.OS === "android") {
-    await Notifications.setNotificationChannelAsync("default", {
-      name: "default",
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: "#FF231F7C",
-    });
-  }
-
-  if (Device.isDevice) {
-    const { status: existingStatus } =
-      await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== "granted") {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== "granted") {
-      alert("Failed to get push token for push notification!");
-      return;
-    }
-    // Learn more about projectId:
-    // https://docs.expo.dev/push-notifications/push-notifications-setup/#configure-projectid
-
-    if (!Constants.expoConfig.extra.eas.projectId) {
-      alert("no projectid");
-      return;
-    }
-    token = (
-      await Notifications.getExpoPushTokenAsync({
-        projectId: Constants.expoConfig?.extra?.eas.projectId,
-      })
-    ).data;
-    console.log(token);
-  } else {
-    alert("Must use physical device for Push Notifications");
-  }
-
-  return token;
-}

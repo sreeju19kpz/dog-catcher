@@ -35,17 +35,9 @@ export default LAndCS = ({ id }) => {
   );
 
   return (
-    <View style={[styles.wid100p, styles.gap5, { paddingVertical: 3 }]}>
-      <View
-        style={[
-          styles.wid100p,
-          styles.flexDirRow,
-          styles.jusConSpcAro,
-          styles.hei33,
-        ]}
-      >
+    <View style={[styles.gap5, { paddingVertical: 3 }]}>
+      <View style={[styles.flexDirRow, styles.jusConSpcAro, styles.hei33]}>
         <LikeButton isLiked={liked} onClick={getAllC} />
-        <CommentButton id={id} />
       </View>
     </View>
   );

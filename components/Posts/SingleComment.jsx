@@ -6,39 +6,42 @@ import dp from "../../assets/dp.jpg";
 
 const SingleComment = ({ comment }) => {
   return (
-    <View>
-      <View
-        style={[styles.wid100p, styles.pad10, styles.flexDirRow, styles.gap10]}
-      >
-        <View style={[]}>
-          <Image
-            style={[
-              styles.hei33,
-              styles.wid33,
-              styles.objFitCov,
-              { borderRadius: 33 / 2 },
-            ]}
-            source={comment?.user?.dp ? { uri: `${comment?.user?.dp}` } : dp}
-          />
-        </View>
-
-        <View
+    <View
+      style={[styles.wid100p, styles.pad10, styles.flexDirRow, styles.gap10]}
+    >
+      <View style={[]}>
+        <Image
           style={[
-            styles.bacColgreLig1,
-            styles.fleGro1,
-            styles.padHor10,
-            styles.padVer1,
-            styles.borRad15,
-            styles.hei50,
-            { paddingBottom: 4 },
+            styles.hei33,
+            styles.wid33,
+            styles.objFitCov,
+            { borderRadius: 33 / 2 },
           ]}
-        >
-          <Text style={[styles.linHig20, styles.fonWei700]}>
-            {comment?.user?.name}
-          </Text>
+          source={comment?.user?.dp ? { uri: `${comment?.user?.dp}` } : dp}
+        />
+      </View>
 
-          <Text style={[styles.linHig20]}>{comment?.comment}</Text>
-        </View>
+      <View
+        style={[
+          styles.fleGro1,
+          styles.padHor10,
+          styles.padVer1,
+          styles.borRad15,
+
+          {
+            paddingBottom: 4,
+            backgroundColor: "rgba(255,255,255,.1)",
+            minHeight: 50,
+          },
+        ]}
+      >
+        <Text style={[styles.linHig20, styles.fonWei700, styles.fonColWhi]}>
+          {comment?.user?.name}
+        </Text>
+
+        <Text style={[styles.linHig20, styles.fonColWhi]}>
+          {comment?.comment}
+        </Text>
       </View>
     </View>
   );

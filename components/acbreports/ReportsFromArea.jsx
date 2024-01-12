@@ -6,6 +6,7 @@ import JISkeleton from "../Elements/JISkeleton";
 import { useFocusEffect } from "@react-navigation/native";
 import CreatePost from "../Posts/CreatePost";
 import { useGetAllReportsForUserMutation } from "../Features/acbReports/reportsApiSlice";
+import PostBannerSkeleton from "../Posts/PostBannerSkeleton";
 export default ReportsFromArea = () => {
   const [data, setData] = useState();
   const [myPosts, setMyPosts] = useState();
@@ -29,14 +30,13 @@ export default ReportsFromArea = () => {
         keyboardShouldPersistTaps="always"
         style={[
           styles.wid100p,
-          styles.flex1,
-          styles.bakColWhi,
-          {
-            paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-          },
+          styles.flex,
+          styles.bakColBla,
+          styles.pad10,
+          styles.gap10,
         ]}
       >
-        <View style={[styles.flex1, styles.bakColWhi]}>
+        <View style={[styles.flex1]}>
           <CreatePost setMypost={(data) => updatePosts(data)} />
           {data?.map((item, index) => {
             return <PostBanner post={item} key={index} />;
@@ -50,16 +50,13 @@ export default ReportsFromArea = () => {
             style={[
               styles.wid100p,
               styles.flex1,
-              styles.bakColWhi,
-              {
-                paddingTop:
-                  Platform.OS === "android" ? StatusBar.currentHeight : 0,
-              },
+              styles.bakColBla,
+              styles.pad10,
             ]}
           >
-            <View style={[styles.flex1, styles.bakColWhi]}>
+            <View style={[styles.flex1]}>
               {Array.from({ length: 3 }).map((_, i) => {
-                return <JISkeleton key={i} />;
+                return <PostBannerSkeleton key={i} />;
               })}
             </View>
           </View>
@@ -71,14 +68,9 @@ export default ReportsFromArea = () => {
     <ScrollView
       contentContainerStyle={{ paddingBottom: 60 }}
       keyboardShouldPersistTaps="always"
-      style={[
-        styles.wid100p,
-        styles.flex1,
-        styles.bakColWhi,
-        { paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 },
-      ]}
+      style={[styles.wid100p, styles.flex1, styles.pad10, styles.bakColBla]}
     >
-      <View style={[styles.flex1, styles.bakColWhi]}>
+      <View style={[styles.flex1, styles.gap10]}>
         {data?.map((item, index) => {
           return <PostBanner post={item} key={index} />;
         })}

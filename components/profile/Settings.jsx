@@ -6,6 +6,8 @@ import {
   useGetUserAreaMutation,
 } from "../Features/user/userApiSlice";
 import { useFocusEffect } from "@react-navigation/native";
+import { styles } from "../../StyleSheet";
+import { Ionicons } from "@expo/vector-icons";
 export default Settings = () => {
   const [updateUserArea, { isLoading }] = useUpdateUserAreaMutation();
   const [getUserArea, { isLoading: fetching }] = useGetUserAreaMutation();
@@ -41,13 +43,48 @@ export default Settings = () => {
     setArea(nArea);
   };
   return (
-    <View>
-      <Pressable onPress={incCount}>
-        <Text>aaa</Text>
-      </Pressable>
+    <View
+      style={[
+        styles.flex1,
+        styles.aliIteCnt,
+        styles.jusConCnt,
+        styles.bakColBla,
+        styles.gap10,
+      ]}
+    >
+      <View
+        style={[
+          styles.gap10,
+          styles.aliIteCnt,
+          styles.flexDirRow,
+          styles.jusConCnt,
+        ]}
+      >
+        <Text
+          style={[
+            styles.fonColWhi,
+            styles.fonSiz18,
+            styles.fonWei500,
+            { lineHeight: 25 },
+          ]}
+        >
+          {`Area `}
+        </Text>
+        <Pressable onPress={incCount}>
+          <Ionicons name="add-circle-outline" size={24} color="white" />
+        </Pressable>
+      </View>
       {area?.map((_, i) => {
         return (
-          <View key={i} style={{ zIndex: 5 - i }}>
+          <View
+            key={i}
+            style={[
+              styles.flexDirRow,
+              styles.aliIteCnt,
+              styles.gap10,
+              { zIndex: 5 - i },
+            ]}
+          >
             <View style={{ zIndex: 5 - i }}>
               <DropDown
                 text={area[i] || "select"}
@@ -55,13 +92,13 @@ export default Settings = () => {
               />
             </View>
             <Pressable onPress={() => decCount(i)}>
-              <Text>remove</Text>
+              <Ionicons name="close-circle-outline" size={24} color="white" />
             </Pressable>
           </View>
         );
       })}
       <Pressable onPress={update}>
-        <Text>aaa</Text>
+        <Ionicons name="save" size={24} color="blue" />
       </Pressable>
     </View>
   );

@@ -20,7 +20,7 @@ export default LikeButton = ({ onClick, isLiked }) => {
           {isLiked ? (
             <AntDesign name="star" size={20} color="blue" />
           ) : (
-            <AntDesign name="staro" size={20} color="black" />
+            <AntDesign name="staro" size={20} color="rgba(255,255,255,.3)" />
           )}
         </View>
       </Pressable>

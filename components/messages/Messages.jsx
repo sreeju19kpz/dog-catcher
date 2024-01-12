@@ -21,7 +21,7 @@ export default Messages = () => {
     }, [navigation])
   );
   return (
-    <View style={[styles.flex1, styles.pad10, styles.gap10]}>
+    <View style={[styles.flex1, styles.pad10, styles.gap10, styles.bakColBla]}>
       {acbs?.map((item, i) => {
         return (
           <Pressable
@@ -35,7 +35,7 @@ export default Messages = () => {
               styles.aliIteCnt,
               styles.pad10,
               styles.gap10,
-              styles.borColBlaLigP1,
+              styles.borColWhiLigP1,
               { borderRadius: 15 },
             ]}
           >
@@ -46,7 +46,9 @@ export default Messages = () => {
               />
             </View>
             <View>
-              <Text style={[styles.fonSiz18]}>{item?.name}</Text>
+              <Text style={[styles.fonSiz18, styles.fonColWhi]}>
+                {item?.name}
+              </Text>
             </View>
           </Pressable>
         );
