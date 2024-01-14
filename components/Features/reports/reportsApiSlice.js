@@ -62,7 +62,7 @@ export const reportsApiSlice = apiSlice.injectEndpoints({
       query: (credentials) => ({
         url: `reports/${credentials.id}/updatedata`,
         method: "PUT",
-        body: { ...credentials.status },
+        body: { status: credentials.status },
       }),
     }),
   }),

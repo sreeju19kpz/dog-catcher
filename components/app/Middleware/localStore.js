@@ -6,7 +6,6 @@ import { setCredentials, logout } from "../../Features/auth/authSlice";
 export const saveTokenToSecureStore = (store) => (next) => (action) => {
   if (action.type === setCredentials.type) {
     const { token, user } = action.payload;
-
     SecureStore.setItemAsync("jwtToken", token).catch((error) => {
       console.error("Error saving token to secure store:", error);
     });
@@ -30,7 +29,6 @@ export const loadTokenFromSecureStore = async (dispatch) => {
     const user = await SecureStore.getItemAsync("user");
     if (token && user) {
       dispatch(setCredentials({ token, user }));
-      console.log(token, user,2);
     } else dispatch(logout());
   } catch (error) {
     console.error("Error loading token from secure store:", error);

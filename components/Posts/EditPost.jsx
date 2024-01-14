@@ -15,7 +15,6 @@ export default EditPost = ({ id }) => {
   const [state, setState] = useState(false);
   const [status, setStatus] = useState();
   const [update, { isLoading }] = useUpdateDataMutation();
-
   const ref = useRef();
   const report = async () => {
     await update({
