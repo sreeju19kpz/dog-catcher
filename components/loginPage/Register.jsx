@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -57,6 +57,7 @@ export default Register = () => {
         expoPushToken,
       }).unwrap();
       console.log(userData);
+      Alert(userData);
       dispatch(setCredentials(userData));
     } catch (err) {
       console.log(err);

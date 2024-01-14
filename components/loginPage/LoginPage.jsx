@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import { styles } from "../../StyleSheet";
 import { useLoginMutation } from "../Features/auth/authApiSlice";
@@ -51,6 +51,7 @@ export default LoginPage = () => {
     try {
       const userData = await login({ email, password, expoPushToken }).unwrap();
       console.log(userData);
+
       dispatch(setCredentials(userData));
     } catch (err) {
       console.log(err);

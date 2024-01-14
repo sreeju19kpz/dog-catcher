@@ -11,10 +11,13 @@ import { styles } from "../../StyleSheet";
 import { LinearGradient } from "expo-linear-gradient";
 import MessagesHome from "../messages/MessagesHome";
 import AltertsHome from "../alertsPage/AltertsHome";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../Features/auth/authSlice";
 
 const Tab = createBottomTabNavigator();
 
 export default function DCApp() {
+  const user = useSelector(selectCurrentUser);
   useEffect(() => {
     socket.emit("createNewGroup", "aaa");
   });
