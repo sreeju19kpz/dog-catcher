@@ -1,11 +1,17 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import Author from "./Author";
 import { styles } from "../../StyleSheet";
 import { AntDesign } from "@expo/vector-icons";
 import LAndCS from "./LAndCS";
 import { useRoute } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../Features/auth/authSlice";
+import { useNavigation } from "@react-navigation/native";
+import EditPost from "./EditPost";
 
 export default PostBanner = ({ post }) => {
+  const navigation = useNavigation();
+  const user = useSelector(selectCurrentUser);
   const route = useRoute();
   return (
     <View
@@ -27,6 +33,7 @@ export default PostBanner = ({ post }) => {
               styles.padHor20,
               styles.padVer5,
               styles.gap10,
+              styles.jusConSpcBtw,
             ]}
           >
             <Author
@@ -34,6 +41,7 @@ export default PostBanner = ({ post }) => {
               id={post?.reportedBy?._id}
               dp={post?.reportedBy?.dp}
             />
+            {user === post?.reportedBy?._id && <EditPost id={post?._id} />}
           </View>
           <View style={[styles.padHor20, { paddingTop: 10 }]}>
             <Text
@@ -54,9 +62,6 @@ export default PostBanner = ({ post }) => {
                 styles.fonColWhi,
                 { lineHeight: 30 },
                 styles.padHor10,
-                post?.isAffectedByRabies
-                  ? styles.bakColred
-                  : styles.bakColgreen,
               ]}
             >
               {post?.isAffectedByRabies
@@ -117,13 +122,6 @@ export default PostBanner = ({ post }) => {
                 styles.fonColWhi,
                 styles.padHor10,
                 { lineHeight: 30 },
-                [
-                  post?.status === "reported"
-                    ? styles.bakColred
-                    : post?.status === "working"
-                    ? styles.bakColyellow
-                    : styles.bakColgreen,
-                ],
               ]}
             >
               {post?.status}

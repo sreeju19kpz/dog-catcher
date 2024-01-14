@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "970670254898",
+    "project_id": "dogcatcher-4165f",
+    "storage_bucket": "dogcatcher-4165f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970670254898:android:d7742856b06871a997052b",
+        "android_client_info": {
+          "package_name": "com.mtownstudios.dogcatch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcAYA2L0U0ZTNxF-aZTSUj3EqsdU2eJvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

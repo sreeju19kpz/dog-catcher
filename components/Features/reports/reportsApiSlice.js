@@ -58,6 +58,13 @@ export const reportsApiSlice = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    updateData: builder.mutation({
+      query: (credentials) => ({
+        url: `reports/${credentials.id}/updatedata`,
+        method: "PUT",
+        body: { ...credentials.status },
+      }),
+    }),
   }),
 });
 export const {
@@ -70,5 +77,5 @@ export const {
   useGetAllReportsByUserMutation,
   useGetIsUserLikedMutation,
   useGetAllReportsFromAreaMutation,
-  useGetAllReportsForUserMutation,
+  useUpdateDataMutation,
 } = reportsApiSlice;

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { logout, setCredentials } from "../../Features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://192.168.0.101:5000/api/v1",
+  baseUrl: "https://dog-catcher-backend.onrender.com/api/v1/",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
     if (token) {
